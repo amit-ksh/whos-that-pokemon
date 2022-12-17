@@ -17,21 +17,23 @@ router.get("/", (req, res) => {
 
 router.get("/api/:guess", (req, res) => {
   const guess = req.params.guess.toLowerCase()
-  const uid = req.body.id
+  const uid = req.body.uid
 
   const entries = require('./data.json')
 
   let guessed = false
+  let name = null
   const latest = entries.filter(e => {
     if (e.uid !== uid) return e
     
     if (guess === e.name) {
       guessed = true
     }
+    name = e.name
   })
   writeFile(path.resolve(__dirname+'/data.json'), JSON.stringify(latest), (e) => {})
 
-  return res.json({data: {guessed}})
+  return res.json({data: {guessed, name}})
 
 })
 
