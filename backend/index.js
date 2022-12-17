@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const routes = require("./src/routes");
+const dotenv = require('dotenv').config();
 
 // Import Twilio and initialize the client.
 // IMPORTANT: Remember to set environment variables for your Account SID and Auth Token.
