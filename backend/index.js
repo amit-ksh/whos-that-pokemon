@@ -2,7 +2,9 @@
 const express = require("express");
 const app = express();
 const routes = require("./src/routes");
-const dotenv = require('dotenv').config();
+
+require('dotenv').config();
+const cors = require('cors')
 
 // Import Twilio and initialize the client.
 // IMPORTANT: Remember to set environment variables for your Account SID and Auth Token.
@@ -13,6 +15,7 @@ const client = twilio(accountSid, authToken);
 
 // Configure the express application
 const port = 3000;
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use("/", routes);
 
